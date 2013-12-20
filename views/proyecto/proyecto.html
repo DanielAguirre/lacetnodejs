@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/stylesheets/lib/normalize.css">
+    <link rel="stylesheet" href="/stylesheets/lib/responsiveslides.css">
+    <link rel="stylesheet" href="/stylesheets/proyecto/estilo.css">
+    <script type="text/javascript" src="/js/lib/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/js/lib/underscore.js"></script>    
+    <script type="text/javascript" src="/js/lib/backbone.js"></script>    
+    <script type="text/javascript" src="/js/lib/handlebars-v1.1.2.js"></script>    
+    <script type="text/javascript" src="/js/lib/responsiveslides.js"></script>
+    <script type="text/javascript" src="/js/lib/validator.js"></script>
+    
+    <script type="text/javascript" src="/js/init.js"></script>
+
+    
+    <script type="text/javascript" src="/js/models/usuario.js"></script>
+    <script type="text/javascript" src="/js/collections/usuario.js"></script>
+
+    <script type="text/javascript" src="/js/main.js"></script>
+  </head>
+  <body>			
+    
+    <header>	
+      <div class="logo"><img src="/img/logo.jpg"></div>
+      <div class="titular">
+        <h1 class="titulo">LACET: Venta de SNEAKERS	</h1>
+      </div>
+      <div class="login">
+        {% if nombre %}
+          <a href='#' class='carrito'></a>
+          <a href="">{{nombre}}</a>
+          <a href='/Proyecto/cerrar'>Cerrar Sesion</a>
+        {% else %} 
+          <a href="#" class="sesion">Iniciar Sesion</a>
+          <a href="#" class="registro">Registrarte</a>
+        {% endif %} 
+      </div>
+    </header>
+    <div class="sesion">
+      <form method="post" action="/proyecto/login">
+        <p>
+          <label for="email">	Emails:</label>
+          <input id="email" type="text" placeholder="nombre@ejemplo.com"><strong class="errorsesemail"></strong>
+        </p>
+        <p>	
+          <label for="password">	Password:</label>
+          <input id="password" type="password" placeholder="Contraseña"><strong class="errorsespassword">	</strong>
+        </p>
+        <p>
+          <button id="login">	Log in</button>
+          <button>Cancelar</button>
+        </p>
+      </form>
+    </div>
+    <div class="registrar">
+      <form id="form" action="/proyecto/registro" method="post">
+        <p>
+          <label for="usuario">	Usuario:</label>
+          <input id="usuario" type="text" name="usuario" placeholder="Nombre de Usuario"><strong class="errorregusuario"></strong>
+        </p>
+        <p>
+          <label for="email">	Correo:</label>
+          <input id="email" type="email" name="email" placeholder="nombre@ejemplo.com"><strong class="errorregemail"></strong>
+        </p>
+        <p>	
+          <label for="password">Password:</label>
+          <input id="password" type="password" name="password" placeholder="Contraseña"><strong class="errorregpassword">	</strong>
+        </p>
+        <p>						
+          <button id="registro">Registrar</button>
+          <button>Cancelar		</button>
+        </p>
+      </form>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="/proyecto/marca/Nike" id="Nike">Nike</a></li>
+        <li><a href="/marca/Adidas" id="Adidas">Adidas</a></li>
+        <li><a href="/marca/Puma" id="Puma">Puma</a></li>
+        <li><a href="/marca/Converse" id="Converse">Converse</a></li>
+        <li><a href="/marca/Reebok"  id="Reebok">Reebok</a></li>
+        <li><a href="/marca/Vans" id="Vans">Vans</a></li>
+        <li><a href="/marca/Supra">Supra</a></li>
+        <li><a href="/marca/DG" id="DC">DC</a></li>
+        <li><a href="/proyecto//marca/Creative Recreation" id="CreativeRecreation">Creative Recreation</a></li>        
+      </ul>
+    </nav>
+    <div class="slider">
+      <ul class="rslides">
+        <li><img src="/img/Banner/adidas-runthrutime.jpg"></li>
+        <li><img src="/img/Banner/Converse.jpg"></li>
+        <li><img src="/img/Banner/nike-airpython.jpg"></li>
+        <li><img src="/img/Banner/nike-db.jpg"></li>
+        <li><img src="/img/Banner/puma-trinomic.jpg"></li>
+      </ul>
+    </div>
+    <div class="articulos"></div>    
+  </body>
+</html>

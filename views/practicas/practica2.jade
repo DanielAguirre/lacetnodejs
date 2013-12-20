@@ -1,0 +1,23 @@
+mixin diagrama(nombre)
+	div
+		a(href='/img/Diagramas/' + nombre+'.png',data-lightbox="roadtrip" ,title=nombre) 
+			img(src='/img/Diagramas/' + nombre+'.png')
+			h4=nombre
+!!! 5
+html(lang='es-mx')
+	meta(charset='utf-8')
+	head
+		title	Análisis de Requerimientos		
+		link(rel='stylesheet', href='/stylesheets/practica2.css')
+		link(rel='stylesheet', href='/stylesheets/lightbox.css')
+		script(type='text/javascript', src='/js/lib/jquery-1.10.2.min.js')
+		script(type='text/javascript', src='/js/lib/lightbox-2.6.min.js')
+		script(type='text/javascript', src='/js/funciones.js')
+	body	
+		header
+			div
+		div.galeria
+			each val in ["Casos de Uso","Diagrama de clases","Diagrama de Estado","Diagrama de Estado","Diagrama de Despliegue","Diagrama de Componentes"]
+				+diagrama(val)
+		div#home
+			h1 HOME

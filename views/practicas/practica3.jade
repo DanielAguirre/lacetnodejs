@@ -1,0 +1,27 @@
+mixin documento(nombre)
+	li
+		img(src='/img/Iconos/word.gif')
+		a(href='/download/#{nombre}') 
+			strong=nombre
+!!! 5
+html(lang='es-mx')
+	meta(charset='utf-8')
+	head
+		title	Análisis de Requerimientos		
+		link(rel='stylesheet', href='/stylesheets/practica/practica3.css')		
+		script(type='text/javascript', src='/js/lib/jquery-1.10.2.min.js')
+
+	body	
+		header
+			div
+
+		h1	Modelado
+		ul
+			+documento("Historia de Usuario")
+			+documento("Tareas")
+			+documento("Pruebas")
+
+	if(error)		
+			script.
+				alert("El archivo no se ha encontrado");						
+				

@@ -1,0 +1,196 @@
+!!! 5
+html(lang='es-MX')
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
+		title=title
+
+		link(rel='stylesheet', href='/stylesheets/lib/normalize.css')
+		link(rel='stylesheet', href='/stylesheets/lib/responsiveslides.css')
+		link(rel='stylesheet', href='/stylesheets/proyecto/estilo.css')
+
+		script(type='text/javascript', src='/js/vendor/jquery-1.10.2.min.js')
+		script(type='text/javascript', src='/js/vendor/underscore.js')
+		script(type='text/javascript', src='/js/vendor/backbone.js')
+		script(type='text/javascript', src='/js/vendor/backbone.localStorage.js')
+		script(type='text/javascript', src='/js/vendor/responsiveslides.js')
+		script(type='text/javascript', src='/js/vendor/validator.js')
+		script(type='text/javascript', src='/js/vendor/uuid.js')
+		script(type='text/javascript', src='/js/vendor/moment-with-langs.js')
+
+		//- script(type='text/javascript', src='/js/funciones.js')		
+		script(type='text/javascript', src='/js/init.js')
+
+		script(type='text/javascript', src='/js/models/usuario.js')
+		script(type='text/javascript', src='/js/models/articulo.js')
+		script(type='text/javascript', src='/js/models/pedido.js')
+		
+		script(type='text/javascript', src='/js/collections/usuario.js')
+		script(type='text/javascript', src='/js/collections/articulo.js')			
+		script(type='text/javascript', src='/js/collections/carrito.js')
+		script(type='text/javascript', src='/js/collections/pedido.js')
+
+		
+		script(type='text/javascript', src='/js/views/usuario.js')
+		script(type='text/javascript', src='/js/views/articulos.js')
+		script(type='text/javascript', src='/js/views/articuloCarrito.js')
+		script(type='text/javascript', src='/js/views/pedido.js')
+		script(type='text/javascript', src='/js/views/app.js')
+
+		script(type='text/javascript', src='/js/routers/router.js')
+		
+		script(type='text/javascript', src='/js/main.js')
+
+	body			
+		header	
+			div.logo
+				img(src='/img/logo.jpg' )
+
+			div.titular
+				h1.titulo LACET: Venta de SNEAKERS
+
+			div.login
+				//- if(typeof(nombre) == "undefined")
+				a.sesion(href='#' ) Iniciar Sesion
+				
+				a.registro(href='#' ) Registrarte
+				//- else	
+				//- 	a.carrito(href="#")  
+				//- 		img(src="/img/Addcarrito.png")
+
+				//- 	strong #{nombre}
+
+				//- 	a#cerrar(href="/proyecto/logut") Cerrar Sesion
+		div.iniciarSesion
+			form(method="post" action="/proyecto/login")
+				p
+					label(for="email")	Emails:
+					input#email(type="text" placeholder="nombre@ejemplo.com" id="email")
+					strong.errorsesemail
+				p	
+					label(for="password")	Password:
+					input#password(type="password" placeholder="Contraseña" id="password")
+					strong.errorsespassword	
+				p
+					input(type="Submit" value="Log in")
+					button Cancelar
+
+		div.registrar
+			form(action="/proyecto/registro", method="GET" )
+				p
+					label(for="usuario")	Usuario:
+					input#usuario(type="text" name="usuario" placeholder="Nombre de Usuario")
+					strong.errorregusuario
+				p
+					label(for="email")	Correo:
+					input#email(type="email" name="email" placeholder="nombre@ejemplo.com")
+					strong.errorregemail
+				p	
+					label(for="password") Password:
+					input#password(type="password" name="password" placeholder="Contraseña")
+					strong.errorregpassword	
+				p						
+					input(type="Submit" value="Registrar")					
+					button Cancelar		
+		nav
+			ul.menu
+				each val in ["Nike", "Adidas", "Puma", "Converse","Reebok","Vans"]
+					li
+						a(href="/proyecto/articulo/"+val id =val  data-marca=val)=val
+		
+		div.slider
+			ul.rslides
+				li
+					img(src='/img/Banner/adidas-runthrutime.jpg')
+				li
+					img(src='/img/Banner/Converse.jpg')		
+				li
+					img(src='/img/Banner/nike-airpython.jpg')
+				li
+					img(src='/img/Banner/nike-db.jpg')
+				li
+					img(src='/img/Banner/puma-trinomic.jpg')
+
+		section#articulos
+		section#carrito
+			.articulos
+			.total
+				strong Total:
+				strong#precio
+				p
+					input#realizarPedido(type="button" value="Realizar Pedido" )
+					input#cancelarPedido(type="button" value="Cancelar Pedido")	
+		.reporte			
+		footer
+			h3
+				strong
+					| Lacet Venta de Sneakers <span class="autor"> Produced by Daniel</span>
+
+		script#articulosTemplate(type="text/template")
+			<article class="articulo">
+			<div class='descripcion'>
+			<figure class="imagen">
+			<img src="/img/marca/<%=marca%>/<%=imagen%>.jpg">
+			</figure>			
+			<div class="detalles">
+			<h3><%=modelo%></h3>
+			<p><span><%=marca%></span>
+			<strong><%=precio%></strong><p>
+			</div>			
+			<a href="#"><img src="/img/carrito.gif"></a>
+			</div>
+			</article>
+
+		script#articuloTemplate(type="text/template")
+			<article class="articulo">
+			<div class='descripcion'>
+			<figure class="imagen">
+			<img src="/img/marca/<%=marca%>/<%=imagen%>.jpg">
+			</figure>			
+			<div class="detalles">
+			<h3><%=modelo%></h3>
+			<p><span><%=marca%></span>
+			<strong><%=precio%></strong><p>
+			<lable for="cantidad">Cantidad
+			<input type="text" name="cantidad" id="cantidad"></lable>
+			</div>			
+			</div>
+			</article>
+
+		script#articuloCarritoTemplate(type="text/template")
+			<article class="articulo">
+			<div class='descripcion'>
+			<figure class="imagen">
+			<img src="/img/marca/<%=marca%>/<%=imagen%>.jpg">
+			</figure>			
+			<div class="detalles">
+			<h3><%=modelo%></h3>
+			<span><%=marca%></span>
+			<strong>$<%=precio%>.00</strong>
+			<a href="#"><img src="/img/eliminat.png" id="eliminar"></a>				
+			</div>
+			</div>
+			</article>
+
+		script#totalTemplate(type='text/template')	
+			<strong> Total:<%= total%> <strong>
+			<p>
+			<input type="button" value="Realizar Pedido" id0"realizarPedido">
+			<input type="button" value="Cancelar Pedido" id0"cancelarPedido">
+			</p>
+			
+		script#usuarioTemplate(type='text/template')
+			<a href='#' class='carrito'><img src="/img/Addcarrito.png"></a>
+			<strong><%= nombre %></strong>
+			<a href='/cerrar' id='cerrar'>Cerrar Sesion</a>
+
+		script#totalTemplate(type='text/template')
+			<p>$<%= total %>.00</>
+			
+		script#pedidosTemplate(type="text/template")
+			<strong>Codigo:</strong>
+			<span><%=codigo%></span>
+			<strong>Total:</strong>
+			<strong><%=total%></strong>
+			<strong>Fecha:</strong>
+			<span><%=fecha%></span>			
